@@ -156,12 +156,6 @@ function renderSidebar() {
   });
 }
 
-// ── Build LC Link ────────────────────────────────────────
-function lcLink(num) {
-  if (!num) return '';
-  return `<a href="https://leetcode.com/problems/" target="_blank" class="link-btn link-btn-lc" title="LeetCode #${num}">LC #${num}</a>`;
-}
-
 // ── Highlight search match ────────────────────────────────
 function highlight(text, query) {
   if (!query) return text;
@@ -199,13 +193,13 @@ function buildProblemRow(p, rowIndex) {
         <span class="diff-badge diff-${p.diff.toLowerCase()}">${p.diff}</span>
       </td>
       <td class="col-links">
-        ${p.lc ? `<a href="https://leetcode.com/problems/" target="_blank" class="link-btn link-btn-lc">LC #${p.lc}</a>` : ''}
+        ${p.lc ? `<a href="https://leetcode.com/problemset/all/?search=${p.lc}" target="_blank" class="link-btn link-btn-lc">LC #${p.lc}</a>` : ''}
         ${p.gfg ? `<a href="https://www.geeksforgeeks.org/${p.gfg}" target="_blank" class="link-btn link-btn-gfg">GFG</a>` : ''}
         ${!p.lc && !p.gfg ? '<span style="color:var(--text-muted);font-size:12px">—</span>' : ''}
       </td>
       <td class="col-actions">
         <button class="action-btn bookmark-btn" data-id="${p.id}" title="${bookmarked ? 'Remove bookmark' : 'Bookmark'}">
-          ${bookmarked ? '🔖' : '🔗'}
+          ${bookmarked ? '🔖' : '☆'}
         </button>
       </td>
     </tr>
@@ -214,7 +208,16 @@ function buildProblemRow(p, rowIndex) {
 
 // ── Build Problem Table ──────────────────────────────────
 function buildProblemTable(problems) {
-  const rows = problems.map((p, i) => buildProblemRow(p, i)).filter(Boolean);
+  // Collect only the rows that pass the current filters, then number them sequentially
+  const rows = [];
+  let visibleIndex = 0;
+  for (const p of problems) {
+    const row = buildProblemRow(p, visibleIndex);
+    if (row) {
+      rows.push(row);
+      visibleIndex++;
+    }
+  }
   if (rows.length === 0) return `<div class="no-results">No problems match the current filter.</div>`;
 
   return `
@@ -286,6 +289,8 @@ function renderSteps() {
   }).join('');
 
   attachEventListeners();
+  // Re-attach scroll observer to freshly rendered step elements
+  initScrollTracking();
 }
 
 // ── Event Listeners ──────────────────────────────────────
@@ -332,7 +337,7 @@ function attachEventListeners() {
       const id = btn.dataset.id;
       if (sheetState.bookmarked[id]) {
         delete sheetState.bookmarked[id];
-        btn.textContent = '🔗';
+        btn.textContent = '☆';
         btn.title = 'Bookmark';
       } else {
         sheetState.bookmarked[id] = true;
@@ -435,9 +440,13 @@ function initFilters() {
 }
 
 // ── Scroll tracking (active sidebar item) ────────────────
+let _scrollObserver = null;
+
 function initScrollTracking() {
-  const stepIds = A2Z_SHEET.map(s => `step-${s.id}`);
-  const observer = new IntersectionObserver(entries => {
+  // Disconnect any previous observer so re-renders don't leave stale observations
+  if (_scrollObserver) _scrollObserver.disconnect();
+
+  _scrollObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const id = entry.target.id;
@@ -449,9 +458,9 @@ function initScrollTracking() {
     });
   }, { threshold: 0.1, rootMargin: '-80px 0px -60% 0px' });
 
-  stepIds.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) observer.observe(el);
+  A2Z_SHEET.forEach(s => {
+    const el = document.getElementById(`step-${s.id}`);
+    if (el) _scrollObserver.observe(el);
   });
 }
 
@@ -469,9 +478,8 @@ function handleHashNav() {
 // ── Init ─────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   renderSidebar();
-  renderSteps();
+  renderSteps();      // calls initScrollTracking() internally
   updateGlobalStats();
   initFilters();
-  initScrollTracking();
   handleHashNav();
 });

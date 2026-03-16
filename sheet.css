@@ -335,6 +335,8 @@
   background: var(--bg-card);
   box-shadow: var(--shadow-sm);
   transition: box-shadow var(--transition);
+  /* Offset for sticky navbar + filter bar when jumping to anchor */
+  scroll-margin-top: calc(var(--navbar-h) + 60px);
 }
 
 .step-block:hover { box-shadow: var(--shadow-md); }
@@ -471,7 +473,7 @@
 }
 
 .sub-step.sub-collapsed .sub-step-chevron { transform: rotate(-90deg); }
-.sub-step.sub-collapsed .problem-table-wrap { display: none; }
+.sub-step.sub-collapsed .sub-step-body { display: none; }
 
 /* ═══════════════ PROBLEM TABLE ═══════════════ */
 .problem-table-wrap {
