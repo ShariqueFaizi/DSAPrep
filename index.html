@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA Prep Pro — MAANG Interview Mastery</title>
+    <meta name="description" content="Comprehensive DSA preparation dashboard for MAANG interviews. Track progress, study patterns, and master 200+ problems.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+
+    <!-- Sidebar Navigation -->
+    <nav id="sidebar" class="sidebar">
+        <div class="sidebar-logo">
+            <div class="logo-icon">⚡</div>
+            <span class="logo-text">DSA Prep<span class="logo-accent">Pro</span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" class="nav-link active" data-section="dashboard" id="nav-dashboard">
+                <span class="nav-icon">📊</span><span class="nav-label">Dashboard</span>
+            </a></li>
+            <li><a href="#" class="nav-link" data-section="problems" id="nav-problems">
+                <span class="nav-icon">💻</span><span class="nav-label">Problems</span>
+            </a></li>
+            <li><a href="#" class="nav-link" data-section="patterns" id="nav-patterns">
+                <span class="nav-icon">🧩</span><span class="nav-label">Patterns</span>
+            </a></li>
+            <li><a href="#" class="nav-link" data-section="companies" id="nav-companies">
+                <span class="nav-icon">🏢</span><span class="nav-label">Companies</span>
+            </a></li>
+            <li><a href="#" class="nav-link" data-section="schedule" id="nav-schedule">
+                <span class="nav-icon">📅</span><span class="nav-label">Schedule</span>
+            </a></li>
+            <li><a href="#" class="nav-link" data-section="notes" id="nav-notes">
+                <span class="nav-icon">📝</span><span class="nav-label">Notes</span>
+            </a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <button id="reset-btn" class="reset-btn" title="Reset all progress">🔄 Reset Progress</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content" class="main-content">
+
+        <!-- ═══════════════ DASHBOARD SECTION ═══════════════ -->
+        <section id="section-dashboard" class="section active">
+            <div class="section-header">
+                <div>
+                    <h1 id="main-heading">Welcome Back, <span class="gradient-text">Champion</span> 🔥</h1>
+                    <p class="subtitle" id="dashboard-subtitle">Your MAANG interview preparation dashboard</p>
+                </div>
+                <div class="streak-badge" id="streak-badge">
+                    <span class="streak-fire">🔥</span>
+                    <span class="streak-count" id="streak-count">0</span>
+                    <span class="streak-label">day streak</span>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid" id="stats-grid">
+                <div class="stat-card stat-card-gradient-1">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="stat-solved">0</span>
+                        <span class="stat-label">Solved</span>
+                    </div>
+                    <div class="stat-ring">
+                        <svg viewBox="0 0 36 36" class="circular-chart">
+                            <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            <path class="circle" id="progress-ring" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        </svg>
+                        <span class="stat-percent" id="stat-percent">0%</span>
+                    </div>
+                </div>
+                <div class="stat-card stat-card-gradient-2">
+                    <div class="stat-icon">🟢</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="stat-easy">0</span>
+                        <span class="stat-label">Easy</span>
+                    </div>
+                </div>
+                <div class="stat-card stat-card-gradient-3">
+                    <div class="stat-icon">🟡</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="stat-medium">0</span>
+                        <span class="stat-label">Medium</span>
+                    </div>
+                </div>
+                <div class="stat-card stat-card-gradient-4">
+                    <div class="stat-icon">🔴</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="stat-hard">0</span>
+                        <span class="stat-label">Hard</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Topic Progress -->
+            <div class="card" id="topic-progress-card">
+                <h2 class="card-title">📈 Topic Progress</h2>
+                <div class="topic-bars" id="topic-bars"></div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="card" id="recent-activity-card">
+                <h2 class="card-title">⚡ Recent Activity</h2>
+                <div class="activity-list" id="activity-list">
+                    <p class="empty-state">No problems solved yet. Start your journey! 🚀</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════ PROBLEMS SECTION ═══════════════ -->
+        <section id="section-problems" class="section">
+            <div class="section-header">
+                <div>
+                    <h1>Problem <span class="gradient-text">Tracker</span></h1>
+                    <p class="subtitle">200+ curated problems organized by topic</p>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="filter-bar" id="filter-bar">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="search-input" placeholder="Search problems..." class="search-input">
+                </div>
+                <div class="filter-chips" id="difficulty-filter">
+                    <button class="chip active" data-filter="all" id="filter-all">All</button>
+                    <button class="chip chip-easy" data-filter="Easy" id="filter-easy">Easy</button>
+                    <button class="chip chip-medium" data-filter="Medium" id="filter-medium">Medium</button>
+                    <button class="chip chip-hard" data-filter="Hard" id="filter-hard">Hard</button>
+                </div>
+                <div class="filter-chips" id="status-filter">
+                    <button class="chip active" data-status="all" id="status-all">All</button>
+                    <button class="chip" data-status="solved" id="status-solved">✅ Solved</button>
+                    <button class="chip" data-status="unsolved" id="status-unsolved">⬜ Unsolved</button>
+                </div>
+                <div class="filter-chips" id="company-filter">
+                    <button class="chip active" data-company="all" id="company-all">All</button>
+                    <button class="chip" data-company="Google" id="company-google">Google</button>
+                    <button class="chip" data-company="Meta" id="company-meta">Meta</button>
+                    <button class="chip" data-company="Amazon" id="company-amazon">Amazon</button>
+                    <button class="chip" data-company="Apple" id="company-apple">Apple</button>
+                    <button class="chip" data-company="Netflix" id="company-netflix">Netflix</button>
+                </div>
+            </div>
+
+            <!-- Problems by Topic -->
+            <div class="problems-container" id="problems-container"></div>
+        </section>
+
+        <!-- ═══════════════ PATTERNS SECTION ═══════════════ -->
+        <section id="section-patterns" class="section">
+            <div class="section-header">
+                <h1>Pattern <span class="gradient-text">Mastery</span></h1>
+                <p class="subtitle">Master the 15 essential coding patterns</p>
+            </div>
+            <div class="patterns-grid" id="patterns-grid"></div>
+
+            <div id="pattern-detail-modal" class="modal hidden">
+                <div class="modal-content pattern-modal-content">
+                    <button class="modal-close" id="pattern-modal-close">✕</button>
+                    <div id="pattern-detail-body"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════ COMPANIES SECTION ═══════════════ -->
+        <section id="section-companies" class="section">
+            <div class="section-header">
+                <h1>Company <span class="gradient-text">Guides</span></h1>
+                <p class="subtitle">Targeted preparation for each MAANG company</p>
+            </div>
+            <div class="companies-grid" id="companies-grid"></div>
+        </section>
+
+        <!-- ═══════════════ SCHEDULE SECTION ═══════════════ -->
+        <section id="section-schedule" class="section">
+            <div class="section-header">
+                <h1>12-Week <span class="gradient-text">Study Plan</span></h1>
+                <p class="subtitle">Structured roadmap from foundations to mastery</p>
+            </div>
+            <div class="timeline" id="timeline"></div>
+        </section>
+
+        <!-- ═══════════════ NOTES SECTION ═══════════════ -->
+        <section id="section-notes" class="section">
+            <div class="section-header">
+                <h1>My <span class="gradient-text">Notes</span></h1>
+                <p class="subtitle">Capture insights, patterns, and learnings</p>
+            </div>
+            <div class="notes-container">
+                <div class="notes-categories" id="notes-categories">
+                    <button class="note-cat-btn active" data-cat="weak" id="note-cat-weak">⚠️ Weak Areas</button>
+                    <button class="note-cat-btn" data-cat="strong" id="note-cat-strong">💪 Strong Areas</button>
+                    <button class="note-cat-btn" data-cat="revisit" id="note-cat-revisit">🔁 Revisit List</button>
+                    <button class="note-cat-btn" data-cat="general" id="note-cat-general">📝 General Notes</button>
+                </div>
+                <textarea id="notes-editor" class="notes-editor" placeholder="Type your notes here... (auto-saved)"></textarea>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
