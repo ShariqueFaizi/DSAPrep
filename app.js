@@ -46,6 +46,13 @@ function switchSection(sectionId) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   const activeSection = document.getElementById(`section-${sectionId}`);
   if (activeSection) activeSection.classList.add('active');
+
+  // Lazy-init Monaco editor on first visit
+  if (sectionId === 'editor' && !editorInitialized) {
+    editorInitialized = true;
+    initLanguageSelector();
+    initCodeEditor();
+  }
 }
 
 // ── Dashboard ────────────────────────────────────────────
@@ -506,14 +513,17 @@ function initReset() {
 function initKeyboard() {
   document.addEventListener('keydown', e => {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    // Don't trigger shortcuts when Monaco editor is focused
+    if (document.activeElement?.closest('.monaco-container')) return;
 
     switch(e.key) {
       case '1': switchSection('dashboard'); break;
       case '2': switchSection('problems'); break;
-      case '3': switchSection('patterns'); break;
-      case '4': switchSection('companies'); break;
-      case '5': switchSection('schedule'); break;
-      case '6': switchSection('notes'); break;
+      case '3': switchSection('editor'); break;
+      case '4': switchSection('patterns'); break;
+      case '5': switchSection('companies'); break;
+      case '6': switchSection('schedule'); break;
+      case '7': switchSection('notes'); break;
       case 'Escape':
         document.getElementById('pattern-detail-modal')?.classList.add('hidden');
         break;
@@ -522,7 +532,13 @@ function initKeyboard() {
 }
 
 // ── Initialize ───────────────────────────────────────────
+let editorInitialized = false;
+
 document.addEventListener('DOMContentLoaded', () => {
+  // Check authentication first
+  checkAuth();
+
+  // Initialize app components
   initNav();
   updateDashboard();
   initProblems();
