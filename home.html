@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA Prep Pro — MAANG Interview Mastery | Like TakeUForward</title>
+    <meta name="description" content="Free DSA preparation platform with 450+ problems, A2Z learning path, and company-wise guides. Master Data Structures & Algorithms for MAANG interviews.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+<!-- ═══════════════ NAVBAR ═══════════════ -->
+<header class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="home.html" class="nav-logo">
+            <div class="logo-icon-wrap">⚡</div>
+            <span class="logo-text">DSA Prep<span class="logo-accent">Pro</span></span>
+        </a>
+
+        <nav class="nav-links-main" id="nav-links-main">
+            <a href="home.html" class="nav-item active">Home</a>
+            <a href="sheet.html" class="nav-item">A2Z Sheet</a>
+            <a href="index.html#section-patterns" class="nav-item">Patterns</a>
+            <a href="index.html" class="nav-item">Dashboard</a>
+            <div class="nav-dropdown">
+                <button class="nav-item dropdown-trigger">CS Subjects ▾</button>
+                <div class="dropdown-menu">
+                    <a href="#" class="dropdown-item">OS Concepts</a>
+                    <a href="#" class="dropdown-item">DBMS Basics</a>
+                    <a href="#" class="dropdown-item">Computer Networks</a>
+                    <a href="#" class="dropdown-item">OOP Fundamentals</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="nav-actions">
+            <button class="theme-toggle" id="theme-toggle" title="Toggle theme">
+                <span class="theme-icon">🌙</span>
+            </button>
+            <a href="sheet.html" class="btn btn-outline btn-sm">A2Z Sheet</a>
+            <a href="index.html" class="btn btn-primary btn-sm">Dashboard →</a>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobile-nav">
+    <a href="home.html" class="mobile-nav-item">🏠 Home</a>
+    <a href="sheet.html" class="mobile-nav-item">📋 A2Z Sheet</a>
+    <a href="index.html" class="mobile-nav-item">📊 Dashboard</a>
+    <a href="index.html" class="mobile-nav-item btn btn-primary" style="margin: 12px 16px; text-align:center; border-radius:8px;">Get Started Free →</a>
+</div>
+
+<!-- ═══════════════ HERO SECTION ═══════════════ -->
+<section class="hero" id="hero">
+    <div class="hero-bg-pattern"></div>
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+
+    <div class="container hero-container">
+        <div class="hero-badge">
+            <span class="badge-dot"></span>
+            🎯 #1 Free DSA Preparation Platform
+        </div>
+
+        <h1 class="hero-title">
+            Master <span class="gradient-text">Data Structures</span><br>
+            & Algorithms the <span class="gradient-text">Right Way</span>
+        </h1>
+
+        <p class="hero-subtitle">
+            A structured, step-by-step DSA curriculum with 450+ handpicked problems,<br class="br-desktop">
+            15 essential coding patterns, and company-wise preparation guides.
+        </p>
+
+        <div class="hero-cta">
+            <a href="sheet.html" class="btn btn-primary btn-lg">
+                📋 Start A2Z Sheet
+            </a>
+            <a href="index.html" class="btn btn-outline btn-lg">
+                📊 Open Dashboard
+            </a>
+        </div>
+
+        <!-- Stats Pills -->
+        <div class="hero-stats">
+            <div class="stat-pill">
+                <span class="stat-pill-num" data-count="450">0</span>
+                <span class="stat-pill-label">Problems</span>
+            </div>
+            <div class="stat-pill">
+                <span class="stat-pill-num" data-count="15">0</span>
+                <span class="stat-pill-label">Patterns</span>
+            </div>
+            <div class="stat-pill">
+                <span class="stat-pill-num" data-count="13">0</span>
+                <span class="stat-pill-label">Steps</span>
+            </div>
+            <div class="stat-pill">
+                <span class="stat-pill-num" data-count="5">0</span>
+                <span class="stat-pill-label">Companies</span>
+            </div>
+            <div class="stat-pill">
+                <span class="stat-pill-num" data-count="100">0</span>
+                <span class="stat-pill-label">% Free</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Visual -->
+    <div class="hero-visual">
+        <div class="code-preview">
+            <div class="code-header">
+                <div class="code-dots">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
+                </div>
+                <span class="code-title">two_sum.java</span>
+            </div>
+            <pre class="code-body"><span class="c-keyword">class</span> <span class="c-class">Solution</span> {
+  <span class="c-keyword">public int</span>[] <span class="c-fn">twoSum</span>(<span class="c-keyword">int</span>[] nums, <span class="c-keyword">int</span> target) {
+    Map&lt;Integer, Integer&gt; map = <span class="c-keyword">new</span> HashMap&lt;&gt;();
+    <span class="c-keyword">for</span> (<span class="c-keyword">int</span> i = <span class="c-num">0</span>; i &lt; nums.length; i++) {
+      <span class="c-keyword">int</span> complement = target - nums[i];
+      <span class="c-keyword">if</span> (map.containsKey(complement))
+        <span class="c-keyword">return new int</span>[]{ map.get(complement), i };
+      map.put(nums[i], i);
+    }
+    <span class="c-keyword">return new int</span>[]{};
+  }
+}</pre>
+        </div>
+
+        <div class="progress-preview">
+            <div class="pp-header">📊 Your Progress</div>
+            <div class="pp-bar-wrap">
+                <div class="pp-bar-label"><span>Arrays</span><span class="pp-pct">72%</span></div>
+                <div class="pp-bar"><div class="pp-fill" style="width:72%; background: var(--accent-green)"></div></div>
+            </div>
+            <div class="pp-bar-wrap">
+                <div class="pp-bar-label"><span>DP</span><span class="pp-pct">45%</span></div>
+                <div class="pp-bar"><div class="pp-fill" style="width:45%; background: var(--accent-orange)"></div></div>
+            </div>
+            <div class="pp-bar-wrap">
+                <div class="pp-bar-label"><span>Graphs</span><span class="pp-pct">38%</span></div>
+                <div class="pp-bar"><div class="pp-fill" style="width:38%; background: var(--accent-blue)"></div></div>
+            </div>
+            <div class="pp-streak">🔥 <strong>7-day</strong> streak!</div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ TRUSTED BY BANNER ═══════════════ -->
+<section class="trusted-by">
+    <div class="container">
+        <p class="trusted-label">Questions from top companies</p>
+        <div class="company-logos">
+            <div class="company-logo-item">🔵 Google</div>
+            <div class="company-logo-item">🟦 Meta</div>
+            <div class="company-logo-item">📦 Amazon</div>
+            <div class="company-logo-item">🍎 Apple</div>
+            <div class="company-logo-item">🔴 Netflix</div>
+            <div class="company-logo-item">☁️ Microsoft</div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ FEATURES SECTION ═══════════════ -->
+<section class="features" id="features">
+    <div class="container">
+        <div class="section-head">
+            <span class="section-tag">Why DSA Prep Pro?</span>
+            <h2 class="section-title">Everything you need to <span class="gradient-text">crack the interview</span></h2>
+            <p class="section-subtitle">A complete ecosystem for mastering DSA from zero to hero</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card feature-card-highlight">
+                <div class="feature-icon">📋</div>
+                <h3>A2Z DSA Sheet</h3>
+                <p>13-step structured learning path covering every important topic from basics to advanced, just like Striver's famous A2Z sheet.</p>
+                <a href="sheet.html" class="feature-link">Start the Sheet →</a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🧩</div>
+                <h3>15 Coding Patterns</h3>
+                <p>Master the essential patterns — Sliding Window, Two Pointers, Binary Search, DFS/BFS, DP — with templates and examples.</p>
+                <a href="index.html" class="feature-link">View Patterns →</a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💻</div>
+                <h3>In-Browser Code Editor</h3>
+                <p>Write and run code in 10+ languages directly in your browser with Monaco editor. No setup required.</p>
+                <a href="index.html" class="feature-link">Open Editor →</a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Progress Dashboard</h3>
+                <p>Track your solved problems, streaks, weak areas, and progress by topic. Stay motivated with real-time insights.</p>
+                <a href="index.html" class="feature-link">View Dashboard →</a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🏢</div>
+                <h3>Company-Wise Guides</h3>
+                <p>Targeted preparation for Google, Meta, Amazon, Apple, and Netflix — understand each company's interview style.</p>
+                <a href="index.html" class="feature-link">View Guides →</a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📅</div>
+                <h3>12-Week Study Plan</h3>
+                <p>A structured 12-week roadmap that takes you from complete beginner to interview-ready, with daily tasks.</p>
+                <a href="index.html" class="feature-link">See Schedule →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ A2Z SHEET PREVIEW ═══════════════ -->
+<section class="sheet-preview" id="sheet-preview">
+    <div class="container">
+        <div class="section-head">
+            <span class="section-tag">A2Z DSA Course</span>
+            <h2 class="section-title">A structured path from <span class="gradient-text">Zero to Hero</span></h2>
+            <p class="section-subtitle">13 steps covering everything you need to know for MAANG interviews</p>
+        </div>
+
+        <div class="steps-grid" id="steps-grid">
+            <!-- Generated by JS -->
+        </div>
+
+        <div class="sheet-cta">
+            <a href="sheet.html" class="btn btn-primary btn-lg">
+                📋 View Full A2Z Sheet &nbsp;→
+            </a>
+            <span class="sheet-cta-note">450+ problems · Completely free · Progress saved locally</span>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ TOPICS SECTION ═══════════════ -->
+<section class="topics-section" id="topics">
+    <div class="container">
+        <div class="section-head">
+            <span class="section-tag">Topic Coverage</span>
+            <h2 class="section-title">All <span class="gradient-text">DSA Topics</span> in one place</h2>
+        </div>
+
+        <div class="topics-grid" id="topics-grid">
+            <!-- Generated by JS -->
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ HOW IT WORKS ═══════════════ -->
+<section class="how-it-works" id="how-it-works">
+    <div class="container">
+        <div class="section-head">
+            <span class="section-tag">How It Works</span>
+            <h2 class="section-title">Get started in <span class="gradient-text">3 simple steps</span></h2>
+        </div>
+
+        <div class="steps-how">
+            <div class="step-how">
+                <div class="step-how-num">01</div>
+                <div class="step-how-content">
+                    <h3>Choose your path</h3>
+                    <p>Start with the A2Z Sheet for structured learning, or jump into topic-wise problems if you know what to practice.</p>
+                </div>
+            </div>
+            <div class="step-how-arrow">→</div>
+            <div class="step-how">
+                <div class="step-how-num">02</div>
+                <div class="step-how-content">
+                    <h3>Practice & Learn</h3>
+                    <p>Solve problems on LeetCode, write solutions in our built-in editor, and master each pattern with visual templates.</p>
+                </div>
+            </div>
+            <div class="step-how-arrow">→</div>
+            <div class="step-how">
+                <div class="step-how-num">03</div>
+                <div class="step-how-content">
+                    <h3>Track & Improve</h3>
+                    <p>Monitor progress on the dashboard, review weak areas in your notes, and maintain a daily streak.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ TESTIMONIALS ═══════════════ -->
+<section class="testimonials" id="testimonials">
+    <div class="container">
+        <div class="section-head">
+            <span class="section-tag">Community Love</span>
+            <h2 class="section-title">Trusted by <span class="gradient-text">thousands of engineers</span></h2>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"The A2Z sheet is exactly what I needed. The structured approach helped me crack my Google interview after just 3 months of consistent practice!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">RS</div>
+                    <div>
+                        <div class="author-name">Rahul S.</div>
+                        <div class="author-role">SWE @ Google · L4</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card testimonial-featured">
+                <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"The patterns section is a game changer. Once you understand the 15 core patterns, you can solve almost any LeetCode problem. Got Meta offer!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">PK</div>
+                    <div>
+                        <div class="author-name">Priya K.</div>
+                        <div class="author-role">SWE @ Meta · E4</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"The in-browser editor and company-wise guides made preparation so much easier. The streak feature kept me accountable. Got my Amazon dream job!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">AM</div>
+                    <div>
+                        <div class="author-name">Alex M.</div>
+                        <div class="author-role">SDE @ Amazon · L5</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ COMPARISON TABLE ═══════════════ -->
+<section class="comparison" id="comparison">
+    <div class="container">
+        <div class="section-head">
+            <span class="section-tag">Why Choose Us</span>
+            <h2 class="section-title">Everything you need, <span class="gradient-text">all in one place</span></h2>
+        </div>
+
+        <div class="comparison-table-wrap">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th class="highlight-col">DSA Prep Pro ✓</th>
+                        <th>LeetCode</th>
+                        <th>Other Sites</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Structured A2Z Learning Path</td>
+                        <td class="highlight-col"><span class="check">✅</span></td>
+                        <td><span class="cross">❌</span></td>
+                        <td><span class="partial">⚠️</span></td>
+                    </tr>
+                    <tr>
+                        <td>In-Browser Code Editor</td>
+                        <td class="highlight-col"><span class="check">✅</span></td>
+                        <td><span class="check">✅</span></td>
+                        <td><span class="cross">❌</span></td>
+                    </tr>
+                    <tr>
+                        <td>Pattern-Based Learning</td>
+                        <td class="highlight-col"><span class="check">✅</span></td>
+                        <td><span class="cross">❌</span></td>
+                        <td><span class="partial">⚠️</span></td>
+                    </tr>
+                    <tr>
+                        <td>Company-Wise Guides</td>
+                        <td class="highlight-col"><span class="check">✅</span></td>
+                        <td><span class="partial">⚠️</span></td>
+                        <td><span class="cross">❌</span></td>
+                    </tr>
+                    <tr>
+                        <td>Progress Tracking & Streaks</td>
+                        <td class="highlight-col"><span class="check">✅</span></td>
+                        <td><span class="check">✅</span></td>
+                        <td><span class="cross">❌</span></td>
+                    </tr>
+                    <tr>
+                        <td>12-Week Study Plan</td>
+                        <td class="highlight-col"><span class="check">✅</span></td>
+                        <td><span class="cross">❌</span></td>
+                        <td><span class="cross">❌</span></td>
+                    </tr>
+                    <tr>
+                        <td>100% Free</td>
+                        <td class="highlight-col"><span class="check">✅</span></td>
+                        <td><span class="partial">⚠️ Premium</span></td>
+                        <td><span class="partial">⚠️ Paid</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ CTA BANNER ═══════════════ -->
+<section class="cta-banner">
+    <div class="container">
+        <div class="cta-banner-inner">
+            <div class="cta-banner-bg-glow"></div>
+            <h2>Ready to start your DSA journey?</h2>
+            <p>Join thousands of engineers who cracked MAANG interviews with DSA Prep Pro</p>
+            <div class="cta-actions">
+                <a href="sheet.html" class="btn btn-white btn-lg">📋 Start A2Z Sheet</a>
+                <a href="index.html" class="btn btn-outline-white btn-lg">Open Dashboard →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <span class="logo-icon-wrap">⚡</span>
+                    <span class="logo-text">DSA Prep<span class="logo-accent">Pro</span></span>
+                </div>
+                <p class="footer-tagline">Your MAANG interview preparation platform. Free, structured, and effective.</p>
+                <div class="footer-socials">
+                    <a href="#" class="social-btn">GitHub</a>
+                    <a href="#" class="social-btn">Twitter</a>
+                    <a href="#" class="social-btn">Discord</a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Study Materials</h4>
+                <ul>
+                    <li><a href="sheet.html">A2Z DSA Sheet</a></li>
+                    <li><a href="index.html">Problem Dashboard</a></li>
+                    <li><a href="index.html">Coding Patterns</a></li>
+                    <li><a href="index.html">Code Editor</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Interview Prep</h4>
+                <ul>
+                    <li><a href="index.html">Company Guides</a></li>
+                    <li><a href="index.html">12-Week Plan</a></li>
+                    <li><a href="index.html">Mock Problems</a></li>
+                    <li><a href="index.html">My Notes</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">CS Subjects</a></li>
+                    <li><a href="#">System Design</a></li>
+                    <li><a href="#">Behavioral Prep</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 DSA Prep Pro · Built for engineers, by engineers · 100% Free Forever</p>
+            <p class="footer-inspiration">Inspired by <a href="#" class="footer-link">Striver's TakeUForward</a></p>
+        </div>
+    </div>
+</footer>
+
+<script src="home.js"></script>
+</body>
+</html>

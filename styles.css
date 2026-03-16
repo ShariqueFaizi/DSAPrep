@@ -254,6 +254,19 @@ body {
   white-space: nowrap;
 }
 
+/* External navigation links (Home, A2Z Sheet) */
+.nav-link-external {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  opacity: 0.75;
+}
+.nav-link-external:hover {
+  opacity: 1;
+}
+.nav-links li:nth-child(2) .nav-link-external {
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 8px;
+}
+
 /* Sidebar Footer */
 .sidebar-footer {
   padding: 16px;
