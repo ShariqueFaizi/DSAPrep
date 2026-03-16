@@ -132,6 +132,7 @@ body {
 
 .navbar.scrolled {
   box-shadow: var(--shadow-md);
+  background: var(--bg); /* fallback for browsers without color-mix() */
   background: color-mix(in srgb, var(--bg) 95%, transparent);
 }
 
@@ -792,7 +793,6 @@ body {
 .steps-how {
   display: flex;
   align-items: center;
-  gap: 0;
   justify-content: center;
   flex-wrap: wrap;
   gap: 0;
@@ -1104,9 +1104,18 @@ body {
 .footer-link:hover { text-decoration: underline; }
 
 /* ═══════════════ RESPONSIVE ═══════════════ */
+
+/* On screens where hero-visual is shown, pad the text container to prevent overlap */
+@media (min-width: 1025px) {
+  .hero-container {
+    padding-right: 420px;
+    max-width: 1140px;
+  }
+}
+
 @media (max-width: 1024px) {
   .hero-visual { display: none; }
-  .hero-container { max-width: 100%; }
+  .hero-container { max-width: 100%; padding-right: 0; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
 

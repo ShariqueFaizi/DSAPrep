@@ -5,11 +5,11 @@
 // ── Theme Toggle ──────────────────────────────────────────
 const html = document.documentElement;
 const themeBtn = document.getElementById('theme-toggle');
-const themeIcon = themeBtn.querySelector('.theme-icon');
+const themeIcon = themeBtn ? themeBtn.querySelector('.theme-icon') : null;
 
 function setTheme(dark) {
   html.setAttribute('data-theme', dark ? 'dark' : 'light');
-  themeIcon.textContent = dark ? '☀️' : '🌙';
+  if (themeIcon) themeIcon.textContent = dark ? '☀️' : '🌙';
   localStorage.setItem('home_theme', dark ? 'dark' : 'light');
 }
 
@@ -17,29 +17,33 @@ function setTheme(dark) {
 const savedTheme = localStorage.getItem('home_theme') || 'light';
 setTheme(savedTheme === 'dark');
 
-themeBtn.addEventListener('click', () => {
-  setTheme(html.getAttribute('data-theme') !== 'dark');
-});
+if (themeBtn) {
+  themeBtn.addEventListener('click', () => {
+    setTheme(html.getAttribute('data-theme') !== 'dark');
+  });
+}
 
 // ── Navbar scroll effect ──────────────────────────────────
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 20);
+  if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 20);
 }, { passive: true });
 
 // ── Hamburger Menu ────────────────────────────────────────
 const hamburger = document.getElementById('hamburger');
 const mobileNav = document.getElementById('mobile-nav');
 
-hamburger.addEventListener('click', () => {
-  mobileNav.classList.toggle('open');
-});
+if (hamburger && mobileNav) {
+  hamburger.addEventListener('click', () => {
+    mobileNav.classList.toggle('open');
+  });
 
-document.addEventListener('click', e => {
-  if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
-    mobileNav.classList.remove('open');
-  }
-});
+  document.addEventListener('click', e => {
+    if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
+      mobileNav.classList.remove('open');
+    }
+  });
+}
 
 // ── Animated Counter ──────────────────────────────────────
 function animateCounter(el, target, duration = 1500) {
@@ -170,21 +174,23 @@ function initScrollAnimations() {
   animTargets.forEach(el => observer.observe(el));
 }
 
-// ── Smooth anchor scroll ──────────────────────────────────
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const id = a.getAttribute('href').slice(1);
-    const el = document.getElementById(id);
-    if (el) {
-      e.preventDefault();
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-});
-
 // ── Init ──────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   renderSteps();
   renderTopics();
   initScrollAnimations();
+
+  // Smooth scroll for in-page anchor links (e.g. nav to #features)
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const href = a.getAttribute('href');
+      if (!href || href === '#') return;
+      const id = href.slice(1);
+      const el = document.getElementById(id);
+      if (el) {
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
 });

@@ -513,7 +513,7 @@ function saveEditorCode() {
 }
 
 // ── Code Execution (Piston API) ──────────────────────────
-const PISTON_API = 'https://emkc.org/api/v1/piston/execute';
+const PISTON_API = 'https://emkc.org/api/v2/piston/execute';
 
 async function runCode() {
   if (isRunning) return;
@@ -550,7 +550,8 @@ async function runCode() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         language: lang.pistonLang,
-        source: code,
+        version: lang.pistonVersion,
+        files: [{ content: code }],
         stdin: stdin,
       }),
     });
@@ -564,7 +565,7 @@ async function runCode() {
 
     const result = await response.json();
 
-    // Process output
+    // Process output (Piston v2: result.run.stdout / result.run.stderr)
     let outputText = '';
     let hasError = false;
 
@@ -572,17 +573,17 @@ async function runCode() {
       outputText += `❌ Error:\n${result.message}\n`;
       hasError = true;
     } else {
-      if (result.stdout) {
-        outputText += result.stdout;
+      const run = result.run || result;
+      if (run.stdout) {
+        outputText += run.stdout;
       }
-      if (result.stderr) {
-        outputText += `\n⚠️ Error/Warning:\n${result.stderr}`;
+      if (run.stderr) {
+        outputText += `\n⚠️ Error/Warning:\n${run.stderr}`;
         hasError = true;
       }
-    }
-
-    if (!outputText.trim() && result.output) {
-      outputText = result.output;
+      if (run.code !== 0 && run.code !== null && run.code !== undefined) {
+        hasError = true;
+      }
     }
 
     if (!outputText.trim()) {

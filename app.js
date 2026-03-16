@@ -29,6 +29,8 @@ let state = loadState();
 function initNav() {
   document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', e => {
+      // External links (home.html, sheet.html) have no data-section — let them navigate normally
+      if (!link.dataset.section) return;
       e.preventDefault();
       const section = link.dataset.section;
       switchSection(section);
@@ -317,18 +319,13 @@ function renderProblemRow(problem) {
 function toggleProblem(id) {
   const idx = state.solved.indexOf(id);
   if (idx === -1) {
+    const today = new Date().toDateString();
+    const alreadySolvedToday = state.lastSolvedDate === today;
     state.solved.push(id);
-    state.lastSolvedDate = new Date().toDateString();
-    // Check if streak should increment
-    const yesterday = new Date(Date.now() - 86400000).toDateString();
-    if (!state.streak || state.lastSolvedDate !== yesterday) {
-      // Only increment once per day
-      const todayAlreadyCounted = state.solved.filter(sid => {
-        return sid !== id; // exclude current
-      }).some(() => state.lastSolvedDate === new Date().toDateString());
-      if (!todayAlreadyCounted || state.streak === 0) {
-        state.streak++;
-      }
+    state.lastSolvedDate = today;
+    // Increment streak only once per calendar day
+    if (!alreadySolvedToday) {
+      state.streak = (state.streak || 0) + 1;
     }
   } else {
     state.solved.splice(idx, 1);
@@ -552,6 +549,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Animate stats on load
   animateCounters();
+
+  // Handle hash navigation (e.g. index.html#section-patterns from home.html)
+  const hash = window.location.hash;
+  if (hash && hash.startsWith('#section-')) {
+    const sectionId = hash.replace('#section-', '');
+    switchSection(sectionId);
+  }
 });
 
 function animateCounters() {
